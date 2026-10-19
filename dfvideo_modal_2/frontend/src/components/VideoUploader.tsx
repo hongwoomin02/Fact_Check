@@ -4,6 +4,7 @@ interface Props {
   onAnalyze: (file: File, signal: AbortSignal) => void;
   isAnalyzing: boolean;
   onReset: () => void;
+  initialFile?: File | null;
 }
 
 function formatFileSize(bytes: number): string {
@@ -12,9 +13,9 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export default function VideoUploader({ onAnalyze, isAnalyzing, onReset }: Props) {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+export default function VideoUploader({ onAnalyze, isAnalyzing, onReset, initialFile }: Props) {
+  const [selectedFile, setSelectedFile] = useState<File | null>(initialFile || null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(() => (initialFile ? URL.createObjectURL(initialFile) : null));
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);

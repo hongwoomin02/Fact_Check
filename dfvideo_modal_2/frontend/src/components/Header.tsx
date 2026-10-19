@@ -8,7 +8,7 @@ export default function Header() {
     <header className="header">
       <div className="header-inner">
         <NavLink to="/" className="logo" onClick={() => setMenuOpen(false)}>
-          🛡️ <span className="logo-text">팩트체크 AI</span>
+          🛡️ <span className="logo-text">Fact-Trace AI</span>
         </NavLink>
         <button
           className="menu-toggle"
@@ -45,4 +45,3 @@ export default function Header() {
     </header>
   );
 }
-

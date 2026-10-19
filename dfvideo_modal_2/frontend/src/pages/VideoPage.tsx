@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import VideoUploader from '../components/VideoUploader';
 import VideoAnalysisResult from '../components/VideoAnalysisResult';
 import type { AnalysisState } from '../types/video';
@@ -12,6 +13,8 @@ const INITIAL_STATE: AnalysisState = {
 };
 
 export default function VideoPage() {
+  const location = useLocation();
+  const autoLoadFile = (location.state as { autoLoadFile?: File })?.autoLoadFile || null;
   const [state, setState] = useState<AnalysisState>(INITIAL_STATE);
 
   const handleReset = useCallback(() => {
@@ -61,6 +64,7 @@ export default function VideoPage() {
         onAnalyze={handleAnalyze}
         isAnalyzing={state.status === 'uploading'}
         onReset={handleReset}
+        initialFile={autoLoadFile}
       />
 
       {/* 오류 메시지 박스 */}
