@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  const textTarget = (env.TEXT_API_ORIGIN || 'http://localhost:8001').replace(/\/$/, '');
   const modalTarget = (env.MODAL_VIDEO_API_ORIGIN || 'https://goyeas52--dfvideo-web.us-east.modal.run').replace(/\/$/, '');
 
   return {
@@ -11,6 +12,11 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 5173,
       proxy: {
+        '/api/text': {
+          target: textTarget,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/text/, '/api'),
+        },
         '/api/video': {
           target: modalTarget,
           changeOrigin: true,

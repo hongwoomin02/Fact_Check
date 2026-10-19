@@ -37,7 +37,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 카드 2: 텍스트 탐지 (준비 중) */}
+          {/* 카드 2: 텍스트 팩트체크 */}
           <div
             className="feature-card feature-card--text"
             onClick={() => navigate('/text')}
@@ -46,14 +46,14 @@ export default function HomePage() {
           >
             <div className="card-top-row">
               <span className="card-icon">📰</span>
-              <span className="badge badge--pending">모듈 연동 예정</span>
+              <span className="badge badge--active">서비스 중</span>
             </div>
             <h3 className="card-title">텍스트 팩트체크</h3>
             <p className="card-desc">
               기사, 소셜 미디어 게시글, 메신저 루머 텍스트를 입력하면 신뢰할 수 있는 출처 데이터베이스와 대조하여 진위 여부를 교차 검증합니다.
             </p>
             <div className="card-footer">
-              <span className="btn-link text-muted">안내 페이지 보기 →</span>
+              <span className="btn-link">텍스트 탐지 시작하기 →</span>
             </div>
           </div>
         </div>
